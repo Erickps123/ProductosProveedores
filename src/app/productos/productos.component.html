@@ -1,0 +1,47 @@
+<div class="contenedor">
+    <div class="productos">
+      <h2 class="title">Zona Productos</h2>
+    <div class="listado"> 
+      <h4 class="title">Listado de productos</h4><h5>(Selecciona uno para editar o eliminar)</h5>
+      
+    <table>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Fecha de Vencimiento</th>
+      <th>Proveedor</th>
+   
+      <tr *ngFor="let productos of productoArray"
+        (click)="Editar(productos)"
+        [class.Seleccionado]="productos== ProductoSeleccionado">
+        <td> {{productos.id}}</td>
+        <td> {{productos.nombre}}</td> 
+        <td> {{productos.descripcion}}</td>  
+        <td> {{productos.fecha_vencimiento}}</td>
+        <td> {{productos.id_proveedor}}</td>
+    </tr>
+    </table>
+  </div>
+    <div class="Insertar">
+      <article class="fondo">
+      <div class="form">
+          <h3>Inserta un nuevo Producto</h3>
+          <label class="labeln">Nombre:</label>
+          <input class="inp" type="text" required [(ngModel)]="ProductoSeleccionado.nombre" placeholder="Ingresa un nombre"> 
+          <label class="labeln">Descripcion:</label>
+          <textarea class="inp" type="text" required [(ngModel)]="ProductoSeleccionado.descripcion" rows="7" maxlength="50" placeholder="Descripcion del articulo"></textarea> 
+          <label class="labeln">Fecha de Vencimiento:</label>
+          <input class="inp" type="date" required [(ngModel)]="ProductoSeleccionado.fecha_vencimiento" placeholder="Fecha de vencimiento"> 
+          <label class="labeln">Proveedor:</label>
+          <input class="inp" type="number" required [(ngModel)]="ProductoSeleccionado.id_proveedor" placeholder="Proveedor"> 
+          <button class="button" (click)="Enviar()">Enviar</button>
+          <button class="button" *ngIf="ProductoSeleccionado.id !== 0"
+          (click)="Eliminar()">Eliminar</button>
+      
+        </div>
+       
+     
+    </article>
+    </div>
+    </div> 
+  </div>
