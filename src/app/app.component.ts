@@ -22,17 +22,22 @@ export class AppComponent {
       
         this.ProveedorSeleccionado.id= this.proveedorArray.length+1;
         this.proveedorArray.push(this.ProveedorSeleccionado);
+        localStorage.setItem('proveedor', JSON.stringify(this.ProveedorSeleccionado));
     }
    
     this.ProveedorSeleccionado= new Proveedor();
   }
   Editar(proveedor: Proveedor){
     this.ProveedorSeleccionado= proveedor;
+    localStorage.removeItem('proveedor');
+      localStorage.setItem('proveedor', JSON.stringify(this.ProveedorSeleccionado));
   }
   Eliminar(){
     if(confirm("Quieres Eliminarlo?")){
       this.proveedorArray= this.proveedorArray.filter(x=> x != this.ProveedorSeleccionado);
-    this.ProveedorSeleccionado= new Proveedor();
+      localStorage.removeItem('proveedor');
+      localStorage.setItem('proveedor', JSON.stringify(this.proveedorArray));
+      this.ProveedorSeleccionado= new Proveedor();
     }
   }
 }

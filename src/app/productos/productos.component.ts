@@ -19,6 +19,7 @@ export class ProductosComponent implements OnInit {
         
           this.ProductoSeleccionado.id= this.productoArray.length+1;
           this.productoArray.push(this.ProductoSeleccionado);
+          localStorage.setItem('Producto', JSON.stringify(this.ProductoSeleccionado));
       }
      
       this.ProductoSeleccionado= new Productos();
@@ -29,7 +30,10 @@ export class ProductosComponent implements OnInit {
     Eliminar(){
       if(confirm("Quieres Eliminarlo?")){
         this.productoArray= this.productoArray.filter(x=> x != this.ProductoSeleccionado);
-      this.ProductoSeleccionado= new Productos();
+        localStorage.removeItem('Producto');
+        localStorage.setItem('Producto', JSON.stringify(this.productoArray));
+      
+        this.ProductoSeleccionado= new Productos();
       }
     }
 
